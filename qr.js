@@ -26,7 +26,7 @@ function removeFile(FilePath) {
 const {
 	readFile
 } = require("node:fs/promises")
-router.get('/scan', async (req, res) => {
+router.get('/', async (req, res) => {
 	const id = makeid();
 	async function Getqr() {
 		const {
