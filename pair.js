@@ -1,16 +1,13 @@
 const PastebinAPI = require('pastebin-js'),
 pastebin = new PastebinAPI('EMWTMkQAVfJa9kM-MRUrxd5Oku1U7pgL')
-const {makeid} = require('./index');
+const {makeid} = require('./id');
 const express = require('express');
-const path = require('path');
 const fs = require('fs');
 let router = express.Router()
 const pino = require("pino");
 const {
     default: makeWASocket,
     useMultiFileAuthState,
-    jidNormalizedUser,
-    Browsers,
     delay,
     makeCacheableSignalKeyStore
 } = require("@whiskeysockets/baileys");
@@ -19,7 +16,6 @@ function removeFile(FilePath){
     if(!fs.existsSync(FilePath)) return false;
     fs.rmSync(FilePath, { recursive: true, force: true })
  };
-const {readFile} = require("node:fs/promises")
 router.get('/', async (req, res) => {
     const id = makeid();
     let num = req.query.number;
