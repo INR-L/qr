@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pair with me</title>
+  <title>Pair with Me</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
     body {
@@ -36,18 +36,17 @@
     }
 
     #text {
-  color: #000; /* Set the text color to black (#000) */
-}
+      color: #000; /* Set the text color to black (#000) */
+    }
 
-.input-container input {
-  color: #000; /* Set the text color to black (#000) */
-}
+    .input-container input {
+      color: #000; /* Set the text color to black (#000) */
+    }
 
-.centered-text {
-  color: #000; /* Set the text color to black (#000) */
-}
+    .centered-text {
+      color: #000; /* Set the text color to black (#000) */
+    }
 
-  
     .input-container {
       display: flex;
       background: white;
@@ -113,8 +112,27 @@
     }
 
     .centered-text {
-    text-align: center;
-}
+      text-align: center;
+    }
+
+    @media (max-width: 500px) {
+      .box {
+        width: 90%; 
+      }
+    }
+
+    @media (max-width: 500px) {
+      .input-container input {
+        border-radius: 0.8rem;
+        width: 80%; 
+      }
+
+      .input-container button {
+        padding: 1rem;
+        border-radius: 0.8rem;
+        width: 100%; 
+      }
+    }
   </style>
 </head>
 <body>
@@ -124,26 +142,24 @@
         <div id="text">
           <i class="fa fa-user"></i>
           <p>
-            <h3 class="centered-text">Link with phone number</h3>
+            <h3 class="centered-text">Link with Phone Number</h3>
             <br>
             <h6>Enter your number with a country code.</h6>
             <div class="input-container">
-                <input placeholder="917025673121" type="number" id="number" placeholder="enter your phone number with a country code" name="">
-                <button id="submit">submit</button>
-              </div>
-             
-              <a id="waiting-message" class="centered-text" style="display: none;">Please wait for some time</a>
-              <br>
-              <br>
-              <main id="pair"></main>
+              <input placeholder="917025673121" type="number" id="number" placeholder="Enter your phone number with a country code" name="">
+              <button id="submit">Submit</button>
+            </div>
+            
+            <a id="waiting-message" class="centered-text" style="display: none;">Please wait for some time</a>
+            <br>
+            <br>
+            <main id="pair"></main>
           </p>
         </div>
       </div>
     </div>
   </div>
-  <script
-  src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
-></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
   <script>
     let a = document.getElementById("pair");
     let b = document.getElementById("submit");
@@ -167,9 +183,9 @@
     b.addEventListener("click", async (e) => {
       e.preventDefault();
       if (!c.value) {
-        a.innerHTML = '<a style="color:black;font-weight:bold">enter your WhatsApp number with a country code</a><br><br>';
+        a.innerHTML = '<a style="color:black;font-weight:bold">Enter your WhatsApp number with a country code</a><br><br>';
       } else if (c.value.replace(/[^0-9]/g, "").length < 11) {
-        a.innerHTML = '<a style="color:black;font-weight:bold">invalid number format</a><br><br>';
+        a.innerHTML = '<a style="color:black;font-weight:bold">Invalid number format</a><br><br>';
       } else {
         const bc = c.value.replace(/[^0-9]/g, "");
         let bb = "";
