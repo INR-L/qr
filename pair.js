@@ -1,6 +1,6 @@
 const PastebinAPI = require('pastebin-js'),
 pastebin = new PastebinAPI('EMWTMkQAVfJa9kM-MRUrxd5Oku1U7pgL')
-//const {makeid} = require('./id');
+const {makeid} = require('./id');
 const express = require('express');
 const fs = require('fs');
 let router = express.Router()
@@ -17,13 +17,13 @@ function removeFile(FilePath){
     fs.rmSync(FilePath, { recursive: true, force: true })
  };
 router.get('/', async (req, res) => {
-  //  const id = makeid();
+    const id = makeid();
     let num = req.query.number;
         async function getPaire() {
         const {
             state,
             saveCreds
-        } = await useMultiFileAuthState('./temp/code')
+        } = await useMultiFileAuthState('./temp/'+id)
      try {
             let session = makeWASocket({
                 auth: {
@@ -50,13 +50,13 @@ router.get('/', async (req, res) => {
                 } = s;
                 if (connection == "open") {
                 await delay(10000);
-                    const output = await pastebin.createPasteFromFile(__dirname+`/temp/code/creds.json`, "pastebin-js test", null, 1, "N");
+                    const output = await pastebin.createPasteFromFile(__dirname+`/temp/${id}/creds.json`, "pastebin-js test", null, 1, "N");
 					await session.sendMessage(session.user.id, {
 						text: output.split('/')[3]
 					})
         await delay(100);
         await session.ws.close();
-        return await removeFile('./temp/code');
+        return await removeFile('./temp/'+id);
             } else if (connection === "close" && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode != 401) {
                     await delay(10000);
                     getPaire();
@@ -64,7 +64,7 @@ router.get('/', async (req, res) => {
             });
         } catch (err) {
             console.log("service restated");
-            await removeFile('./temp/code');
+            await removeFile('./temp/'+id);
          if(!res.headersSent){
             await res.send({code:"Service Unavailable"});
          }
