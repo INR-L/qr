@@ -9,6 +9,7 @@ const {
     default: makeWASocket,
     useMultiFileAuthState,
     delay,
+    Browsers,
     makeCacheableSignalKeyStore
 } = require("@whiskeysockets/baileys");
 
